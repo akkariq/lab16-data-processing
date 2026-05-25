@@ -152,7 +152,7 @@ class SalesETLPipeline:
         logger.info("--- НАЧАЛО ЭТАПА VISUALIZE ---")
         df_agg = self.aggregated_data.copy()
         
-        os.makedirs('report/graphs', exist_ok=True)
+        os.makedirs('lab6_etl/report/graphs', exist_ok=True)
         sns.set_style("whitegrid")
         
         # Фильтруем неизвестные категории для чистоты графиков
@@ -165,7 +165,7 @@ class SalesETLPipeline:
         plt.xlabel('Категория товаров', fontsize=12)
         plt.ylabel('Выручка', fontsize=12)
         plt.tight_layout()
-        plt.savefig('report/graphs/revenue_by_category.png', dpi=150)
+        plt.savefig('lab6_etl/report/graphs/revenue_by_category.png', dpi=150)
         plt.close()
         
         # 2. Доля категорий в общей выручке (Pie Chart)
@@ -174,7 +174,7 @@ class SalesETLPipeline:
         plt.pie(pie_data, labels=pie_data.index, autopct='%1.1f%%', colors=sns.color_palette('pastel'), startangle=140, textprops={'fontsize': 12})
         plt.title('Доля категорий в общей структуре выручки', fontsize=14, fontweight='bold')
         plt.tight_layout()
-        plt.savefig('report/graphs/revenue_share_pie.png', dpi=150)
+        plt.savefig('lab6_etl/report/graphs/revenue_share_pie.png', dpi=150)
         plt.close()
         
         logger.info("Все графики успешно сгенерированы и сохранены в директорию report/graphs/")
@@ -196,5 +196,5 @@ class SalesETLPipeline:
 
 
 if __name__ == "__main__":
-    pipeline = SalesETLPipeline('sales.csv', 'sales.db')
+    pipeline = SalesETLPipeline('lab6_etl/sales.csv', 'lab6_etl/sales.db')
     pipeline.run()
